@@ -1,10 +1,14 @@
 extern crate regex;
 
-use regex::{Captures, Regex};
+use regex::{Regex};
+
+fn get_calibration_value(digits: String) -> i32{
+    return format!("{}{}", digits.chars().next().unwrap(), digits.chars().last().unwrap()).parse::<i32>().unwrap();
+}
 
 fn first(line: &str) -> i32 {
     let digits = line.chars().filter(|c| c.is_digit(10)).collect::<String>();
-    return format!("{}{}", digits.chars().next().unwrap(), digits.chars().last().unwrap()).parse::<i32>().unwrap();
+    return get_calibration_value(digits);
 }
 
 fn second(line: &str) -> i32 {
@@ -45,9 +49,7 @@ fn second(line: &str) -> i32 {
         }
     }
 
-    let result = format!("{}{}", digits.chars().next().unwrap(), digits.chars().last().unwrap()).parse::<i32>().unwrap();
-
-    return result;
+    return get_calibration_value(digits);
 }
 
 fn main() {
